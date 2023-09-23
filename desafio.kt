@@ -30,32 +30,28 @@ data class Formacao(val nome: String, val conteudos: List<ConteudoEducacional>, 
     }
 
     fun matricular(vararg usuarios: Usuario) {
-        usuarios.forEach {
-            println("Iniciando matrícula de $it")
+        for (usuario in usuarios) {
+            println("Iniciando matrícula de $usuario")
 
-            if (inscritos.add(it)) {
-                println("$it matriculado com sucesso.")
-                println()
-                return@forEach
+            if (inscritos.add(usuario)) {
+                println("$usuario matriculado com sucesso.\n")
+                continue
             }
 
-            println("Matrícula de $it não pôde ser realizada. Já existe uma matrícula com o email informado.")
-            println()
+            println("Matrícula de $usuario não pôde ser realizada. Já existe uma matrícula com o email informado.\n")
         }
     }
 
     fun cancelarMatricula(vararg usuarios: Usuario) {
-        usuarios.forEach {
-            println("Iniciando cancelamento de matrícula de $it")
+        for (usuario in usuarios) {
+            println("Iniciando cancelamento de matrícula de $usuario")
 
-            if (inscritos.remove(it)) {
-                println("Matrícula de $it cancelada com sucesso.")
-                println()
-                return@forEach
+            if (inscritos.remove(usuario)) {
+                println("Matrícula de $usuario cancelada com sucesso.\n")
+                continue
             }
 
-            println("Não foi possível realizar cancelamento da matrícula de $it. Email informado não está matriculado.")
-            println()
+            println("Não foi possível realizar cancelamento da matrícula de $usuario. Email informado não está matriculado.\n")
         }
     }
 
